@@ -16,9 +16,7 @@ import org.xml.sax.SAXException;
 
 
 public class JMDictParser{
-    public static void ParseFile(String[] Kanji, String readFile, String writeFile ){
-
-        //List<String> kanjiInfo = new ArrayList<>();
+    public static void ParseFile(String readFile){
 
         System.out.println("Running Parse!");
 
@@ -39,46 +37,28 @@ public class JMDictParser{
             // Loads entire entry of kanji. 
             NodeList nodeList = (NodeList) xPath.compile("//entry").evaluate(doc, XPathConstants.NODESET);
 
-            // List for getting info for Entry: SequenceID, Kanji, Reading, frequency, Pos, gloss 
-            String[] fields = {"ent_seq","keb","reb", "ke_pri","pos", "gloss"};
+            // List for getting info for Entry: SequenceID, Kanji, Reading, Grammar Class, Frequency, Field, Antonym, Translation. 
+            String[] fields = {"ent_seq","keb","reb","pos", "ke_pri", "field", "ant", "gloss",};
 
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node nNode = nodeList.item(i);
 
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
-
-                    // Sequence is always int.
-                    String SequenceID = eElement.getElementsByTagName("ent_seq").item(0).getTextContent();
                     
-                    // do: Iterate through list and print out everything. Decide what to do with other kanji forms.
-                    // Can have more than one node.
-                    for (int j = 0; j < fields.length; j++) {
-
-                        NodeList info = eElement.getElementsByTagName(fields[j]);
-
+                    // Going through each node in entry. 
+                    for (String field : fields) {
+                        NodeList info = eElement.getElementsByTagName(field);
                         for (int k = 0; k < info.getLength(); k++) {
-                            String allList = eElement.getElementsByTagName(fields[j]).item(k).getTextContent();
-k                           //System.out.println(allList);
+                            String allList = eElement.getElementsByTagName(field).item(k).getTextContent();
+                            System.out.println(allList);
                         }
-                        
                     }
-                    String kanji = eElement.getElementsByTagName("keb").item(0).getTextContent();
-                    String reading = eElement.getElementsByTagName("reb").item(0).getTextContent();
-                    String frequency = eElement.getElementsByTagName("ke_pri").item(0).getTextContent();
-                    String pos = eElement.getElementsByTagName("pos").item(1).getTextContent();
-                    String gloss = eElement.getElementsByTagName("gloss").item(0).getTextContent();
 
-                    String result = String.format("JMdictID: %s\nKanji: %s\nReading: %s\nFrequency: %s\nPart of Speech: %s\nMeaning: %s", SequenceID, kanji, reading, frequency, pos, gloss);
-
-                    System.out.println("-----\n" + result + "\n");
-
-
+                    // Directly send queries to sql server? 
                 }
                     
-                
             }
-
 
         }   
         catch (FileNotFoundException | ParserConfigurationException | SAXException | XPathException e) {
@@ -88,7 +68,6 @@ k                           //System.out.println(allList);
             System.out.println("An error occurred:" + ioErr);
         }
 
-        
     }
 
 }
