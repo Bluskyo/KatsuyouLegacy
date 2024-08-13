@@ -39,27 +39,39 @@ public class JMDictParser{
             // Loads entire entry of kanji. 
             NodeList nodeList = (NodeList) xPath.compile("//entry").evaluate(doc, XPathConstants.NODESET);
 
+            // List for getting info for Entry: SequenceID, Kanji, Reading, frequency, Pos, gloss 
+            String[] fields = {"ent_seq","keb","reb", "ke_pri","pos", "gloss"};
 
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node nNode = nodeList.item(i);
-                //System.out.println(nNode.getNodeName());
-                //System.out.println(nNode.getTextContent());
 
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
 
-                    String JMdictID = eElement.getElementsByTagName("ent_seq").item(0).getTextContent();
+                    // Sequence is always int.
+                    String SequenceID = eElement.getElementsByTagName("ent_seq").item(0).getTextContent();
                     
-                    // do: Iterate through list and print out everything. 
+                    // do: Iterate through list and print out everything. Decide what to do with other kanji forms.
+                    // Can have more than one node.
+                    for (int j = 0; j < fields.length; j++) {
+
+                        NodeList info = eElement.getElementsByTagName(fields[j]);
+
+                        for (int k = 0; k < info.getLength(); k++) {
+                            String allList = eElement.getElementsByTagName(fields[j]).item(k).getTextContent();
+k                           //System.out.println(allList);
+                        }
+                        
+                    }
                     String kanji = eElement.getElementsByTagName("keb").item(0).getTextContent();
                     String reading = eElement.getElementsByTagName("reb").item(0).getTextContent();
                     String frequency = eElement.getElementsByTagName("ke_pri").item(0).getTextContent();
                     String pos = eElement.getElementsByTagName("pos").item(1).getTextContent();
                     String gloss = eElement.getElementsByTagName("gloss").item(0).getTextContent();
 
-                    String result = String.format("JMdictID: %s\nKanji: %s\nReading: %s\nFrequency: %s\nPart of Speech: %s\nMeaning: %s", JMdictID, kanji, reading, frequency, pos, gloss);
+                    String result = String.format("JMdictID: %s\nKanji: %s\nReading: %s\nFrequency: %s\nPart of Speech: %s\nMeaning: %s", SequenceID, kanji, reading, frequency, pos, gloss);
 
-                    System.out.println(result + "\n");
+                    System.out.println("-----\n" + result + "\n");
 
 
                 }
