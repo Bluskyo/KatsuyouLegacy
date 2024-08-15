@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -39,7 +40,7 @@ public class JMDictParser{
             NodeList nodeList = (NodeList) xPath.compile("//entry").evaluate(doc, XPathConstants.NODESET);
 
             // List for getting info for Entry: 
-            //                 SequenceID, Kanji, Reading, Similar Meaning, Grammar Class, Frequency, Field, Antonym, Translation. 
+            //                 SequenceID, Kanji, Reading, Grammar Class, Similar Meaning, Frequency, Field, Antonym, Translation. 
             String[] fields = {"ent_seq","keb","reb","pos", "xref", "ke_pri", "field", "ant", "gloss",};
 
             for (int j = 0; j < nodeList.getLength(); j++) {
@@ -48,39 +49,69 @@ public class JMDictParser{
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
                     
-                    List<String> data = new ArrayList<>();
-
-                    List<String> alternativeKanji = new ArrayList<>();
-                    List<String> alternativeReading = new ArrayList<>();
+                    List<String> allInfo = new ArrayList<>();
+                    
+                    String alternativeKanji = "";
 
                     // Going through each node in entry. 
                     for (String field : fields) {
 
                         NodeList info = eElement.getElementsByTagName(field);
+                        String data = "";
+
+                        //System.out.println(field + ":" +info.getLength());
+
+                        if (info.getLength() == 0){
+                                data += "NO_DATA";
+                            }
 
                         for (int k = 0; k < info.getLength(); k++) {
-                            String entryContent = eElement.getElementsByTagName(field).item(k).getTextContent();
 
-                            //System.out.println(entryContent);
+                            String entryContent = eElement.getElementsByTagName(field).item(k).getTextContent();
 
                             // Stores other forms of kanji/reading. 
                             if ("keb".equals(field) && k >= 1){
-                                alternativeKanji.add(entryContent);
-                            }
-                            else if ("reb".equals(field) && k >= 1) {
-                                alternativeReading.add(entryContent);
+                                alternativeKanji += entryContent + " ";
+                                continue;
                             }
 
+                            if (k == info.getLength()){
+                                data += entryContent;
+                            }
+
+                            data += entryContent + " ";
                             
-
-
                         }
-                    }
-                    String test = alternativeKanji.toString();
-                    System.out.println(test);
 
-                    String test2 = alternativeReading.toString();
-                    System.out.println(test2);
+                        allInfo.add(data);
+
+                    }
+                    // Adds the other forms of kanji form.
+                    allInfo.add(alternativeKanji);
+
+                    String stringAllInfo = String.join("|", allInfo);
+                    String[] allInfoArray = stringAllInfo.split("\\|");
+                    List<String> test = Arrays.asList(allInfoArray );
+
+                    int index = 0;
+
+                    for (Object element : test) {
+                        System.out.println(index);
+                        System.out.println(element);
+                        index++;
+                        
+                    }
+
+
+                    //List<String> 
+
+                    //String[] arrOfStr = stringAllInfo.split(",", 9);
+
+                    //for (String a : arrOfStr)
+                    //    System.out.print(a);
+                    
+                    //System.out.println(stringAllInfo);
+
                     // Directly send queries to sql server? 
                 }
                 
