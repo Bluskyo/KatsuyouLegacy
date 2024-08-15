@@ -13,7 +13,7 @@ public class main {
         "立つ", "飛ぶ", "止まる", "とまる", "取る", "撮る", "疲れる", "使う", "付ける", "着く", "作る", "勤める", 
         "生まれる", "売る", "歌う", "分かる", "忘れる", "渡る", "渡す", "やる", "休む", "呼ぶ", "読む","ある", "する"};
         
-        JMDictParser.ParseFile(N5Verbs, "test.XML", "OUTPUT.XML" );
+        JMDictParser.ParseFile("test.XML" );
 
         
     }
