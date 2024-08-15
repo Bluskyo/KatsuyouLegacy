@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -59,8 +58,7 @@ public class JMDictParser{
                         NodeList info = eElement.getElementsByTagName(field);
                         String data = "";
 
-                        //System.out.println(field + ":" +info.getLength());
-
+                        // To retain index places in list.
                         if (info.getLength() == 0){
                                 data += "NO_DATA";
                             }
@@ -74,45 +72,26 @@ public class JMDictParser{
                                 alternativeKanji += entryContent + " ";
                                 continue;
                             }
-
-                            if (k == info.getLength()){
-                                data += entryContent;
-                            }
-
                             data += entryContent + " ";
                             
                         }
 
-                        allInfo.add(data);
-
+                        allInfo.add(data.trim());
                     }
                     // Adds the other forms of kanji form.
-                    allInfo.add(alternativeKanji);
-
-                    String stringAllInfo = String.join("|", allInfo);
-                    String[] allInfoArray = stringAllInfo.split("\\|");
-                    List<String> test = Arrays.asList(allInfoArray );
+                    allInfo.add(alternativeKanji.trim());
 
                     int index = 0;
-
-                    for (Object element : test) {
+                    for (Object elem : allInfo) {
                         System.out.println(index);
-                        System.out.println(element);
+                        System.out.println(elem);
                         index++;
-                        
                     }
+                    // SequenceID, Kanji, Reading, Grammar Class, Similar Meaning, Frequency, Field, Antonym, Translation. 
+                    // Directly send queries to sql server
 
-
-                    //List<String> 
-
-                    //String[] arrOfStr = stringAllInfo.split(",", 9);
-
-                    //for (String a : arrOfStr)
-                    //    System.out.print(a);
                     
-                    //System.out.println(stringAllInfo);
 
-                    // Directly send queries to sql server? 
                 }
                 
             }

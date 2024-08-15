@@ -489,58 +489,7 @@ various information fields.
 ]>
 <!-- JMdict created: 2024-08-10 -->
 <JMdict>
-<entry>
-<ent_seq>1473740</ent_seq>
-<k_ele>
-<keb>買う</keb>
-<ke_pri>ichi1</ke_pri>
-<ke_pri>news1</ke_pri>
-<ke_pri>nf10</ke_pri>
-</k_ele>
-<r_ele>
-<reb>かう</reb>
-<re_pri>ichi1</re_pri>
-<re_pri>news1</re_pri>
-<re_pri>nf10</re_pri>
-</r_ele>
-<sense>
-<pos>&v5u;</pos>
-<pos>&vt;</pos>
-<gloss>to buy</gloss>
-<gloss>to purchase</gloss>
-</sense>
-<sense>
-<pos>&v5u;</pos>
-<pos>&vt;</pos>
-<gloss>to value (highly)</gloss>
-<gloss>to think highly of</gloss>
-<gloss>to have a high opinion of</gloss>
-<gloss>to appreciate</gloss>
-<gloss>to recognize</gloss>
-</sense>
-<sense>
-<pos>&v5u;</pos>
-<pos>&vt;</pos>
-<gloss>to incur (someone's anger, displeasure, etc.)</gloss>
-<gloss>to elicit (e.g. sneers)</gloss>
-<gloss>to invite (e.g. scorn)</gloss>
-<gloss>to evoke</gloss>
-<gloss>to arouse</gloss>
-<gloss>to win (someone's favour)</gloss>
-</sense>
-<sense>
-<pos>&v5u;</pos>
-<pos>&vt;</pos>
-<gloss>to accept</gloss>
-<gloss>to take on</gloss>
-<gloss>to take up</gloss>
-</sense>
-<sense>
-<pos>&v5u;</pos>
-<pos>&vt;</pos>
-<gloss>to pay for (a prostitute, geisha, etc.)</gloss>
-</sense>
-</entry>
+
 <entry>
 <ent_seq>1305990</ent_seq>
 <k_ele>
@@ -588,4 +537,5 @@ various information fields.
 <gloss>to speak</gloss>
 </sense>
 </entry>
+
 </JMdict>
