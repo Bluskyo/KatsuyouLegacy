@@ -1,4 +1,4 @@
-
+import java.sql.Connection;
 
 public class main {
     public static void main(String... args) throws ClassNotFoundException {
@@ -13,9 +13,10 @@ public class main {
         //"立つ", "飛ぶ", "止まる", "とまる", "取る", "撮る", "疲れる", "使う", "付ける", "着く", "作る", "勤める", 
         //"生まれる", "売る", "歌う", "分かる", "忘れる", "渡る", "渡す", "やる", "休む", "呼ぶ", "読む","ある", "する"};
         
-        MySQLConnection.getConnection();
+        Connection connection = MySQLConnection.getConnection();
 
-        //JMDictParser.ParseFile("test.XML" );  
+        JMDictParser.ParseFile(connection, "test.XML");
+
 
         
     }
