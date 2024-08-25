@@ -1,7 +1,7 @@
 
 
 public class main {
-    public static void main(String... args) {
+    public static void main(String... args) throws ClassNotFoundException {
 
         //String[] N5Verbs = {"浴びる", "上げる", "開ける", "開く", "洗う", "歩く", "遊ぶ", "会う", "違う", 
         //"出す", "出かける", "出る", "吹く", "降る", "入る", "始ま", "履く", "話す", "晴れる", "貼る", "走る", 
@@ -15,7 +15,7 @@ public class main {
         
         MySQLConnection.getConnection();
 
-        JMDictParser.ParseFile("test.XML" );  
+        //JMDictParser.ParseFile("test.XML" );  
 
         
     }

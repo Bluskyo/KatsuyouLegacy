@@ -60,7 +60,7 @@ public class JMDictParser{
 
                         // To retain index places in list.
                         if (info.getLength() == 0){
-                                data += "NO_DATA";
+                                data += null;
                             }
 
                         for (int k = 0; k < info.getLength(); k++) {
