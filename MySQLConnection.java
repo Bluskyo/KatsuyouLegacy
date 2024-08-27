@@ -4,15 +4,11 @@ import java.sql.SQLException;
 
 
 public class MySQLConnection {
-    public static Connection getConnection() {
+    public static Connection getConnection(String url, String user, String password) {
 
-        String url = "jdbc:mysql://localhost:3307/JMDict";
-        String user = "root";
-        String password = ""; 
-        
         try {            
             Connection connection = DriverManager.getConnection(url, user, password);
-            System.out.println("Connected to the database at:  " + url);
+            System.out.println("Connected to the database at: " + url);
             return connection;
 
         } catch (SQLException e) {

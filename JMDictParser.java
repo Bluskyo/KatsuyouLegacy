@@ -63,62 +63,60 @@ public class JMDictParser{
                         NodeList info = eElement.getElementsByTagName(field);
 
                         String data = "";
-                        Set<String> uniquTags = new HashSet<>(); // stop duplicate tags from getting added.
+                        Set<String> uniqueTags = new HashSet<>(); // stop duplicate tags from getting added.
 
                         // To retain index places in list.
-                        if (info.getLength() == 0){
-                                data += null;
+                        if (info.getLength() == 0 ){
+                                data = null;
                             }
 
                         for (int j = 0; j < info.getLength(); j++) {
 
                             String entryContent = eElement.getElementsByTagName(field).item(j).getTextContent();
 
+                            // Avoids getting the ", " on primary kanji.
+                            if ("keb".equals(field) && j == 0){
+                                data += entryContent;
+                                continue;
+                            }
                             // Stores other forms of kanji/reading. 
                             if ("keb".equals(field) && j >= 1){
                                 alternativeKanji += entryContent + " ";
                                 continue;
                             }
-                            // Avoids getting the 👻 on primary kanji.
-                            if ("keb".equals(field) && j == 0){
-                                data += entryContent;
-                                continue;
-                            }
-                            // Avoids 👻 on end of entries.
+                            // Avoids ", " on end of entries.
                             if (j == info.getLength() -1 ){
                                 data += entryContent;
                                 continue; 
                             }
-
+                            // Stores unique tags for pos field.
                             if ("pos".equals(field) ){
-                                uniquTags.add(entryContent);
+                                uniqueTags.add(entryContent);
                                 continue;
                             }
 
-                            data += entryContent + "👻";
-                            
+                            data += entryContent + ", ";
                         }
 
-                        if ("pos".equals(field) && !uniquTags.isEmpty()){
-                            String result = uniquTags.toString().replaceAll("[\\[\\]]", "");
+                        if ("pos".equals(field) && !uniqueTags.isEmpty()){
+                            String result = uniqueTags.toString().replaceAll("[\\[\\]]", "");
                             allInfo.add(result);
                         }
                         else {
-                            allInfo.add(data.trim());
+                            allInfo.add(data);
                         }
 
                     }
                     // Adds the other forms of kanji form.
-                    allInfo.add(alternativeKanji.trim());
-
-                    int index = 0;
-                    for (Object elem : allInfo) {
-                        System.out.println(index);
-                        System.out.println(elem);
-                        index++;
+                    if (alternativeKanji.isEmpty()){
+                        allInfo.add(null);
                     }
+                    else{
+                        allInfo.add(alternativeKanji);
+                    }
+
                    //  [0] SequenceID, [1] Kanji, [2] Reading, [3] Grammar Class, [4] Similar Meaning, [5] Frequency, [6] Field, [7] Antonym, [8] Translation, [9] Similar kanji.
-                 //Directly send queries to sql server
+                   //Directly send queries to sql server
 
                     String sequenceID = allInfo.get(0);
                     String kanji = allInfo.get(1);
@@ -131,26 +129,13 @@ public class JMDictParser{
                     String translation = allInfo.get(8);
                     String similarKanji = allInfo.get(9);
 
-                    //System.out.println("Sequence ID: " + sequenceID);
-                    //System.out.println("Kanji: " + kanji);
-                    //System.out.println("Reading: " + reading);
-                    //System.out.println("Grammar Class: " + grammarClass);
-                    //System.out.println("Similar Meaning: " + similarMeaning);
-                    //System.out.println("Frequency: " + frequency);
-                    //System.out.println("Field: " + field);
-                    //System.out.println("Antonym: " + antonym);
-                    //System.out.println("Translation: " + translation);
-                    //System.out.println("Similar Kanji: " + similarKanji);
-
-
-
                     try {
 
                         dbConnection.setAutoCommit(false);
 
                         String tranlationSQL = "INSERT INTO Translations (Gloss) VALUES(?);";
                         String metadataSQL = "INSERT INTO Metadata(Pos, Similar_Meaning, Frequency, Field, Antonym, Similar_Kanji) VALUES (?, ?, ?, ?, ?, ?);";
-                        String kanjiSQL = "INSERT INTO Kanji (Kanji_Seq, Kanji, Reading, Metadata_ID, Translations_ID) VALUES (?, ?, ?, ?, ?);";
+                        String kanjiSQL = "INSERT INTO Kanji (Kanji_Seq, Kanji, Reading, Metadata_ID, Translations_ID) VALUES (?, ?, ?, LAST_INSERT_ID(), LAST_INSERT_ID());";
                         
                         try {
 
@@ -176,20 +161,16 @@ public class JMDictParser{
                             pstmt3.setString(2, kanji);
                             pstmt3.setString(3, reading);
 
-                            // findout how to get lst insert.
-                            pstmt3.setString(4, "LAST_INSERT_ID()");
-                            pstmt3.setString(5, "LAST_INSERT_ID()");
                             pstmt3.executeUpdate();
 
                             // Pushes inserts
                             dbConnection.commit();
-                            System.out.println("Data inserted into all tables successfully.");
+                            //System.out.println("Data inserted into all tables successfully.");
                             
                         } catch (SQLException e) {
                             System.out.println(e);
                         }
 
-                        System.out.println();
                         
                     } catch (SQLException e) {
                         System.out.println(e);

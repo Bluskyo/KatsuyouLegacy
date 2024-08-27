@@ -1,7 +1,7 @@
-import java.sql.Connection;
-
 public class main {
     public static void main(String... args) throws ClassNotFoundException {
+        // Innit database: 
+        //innitDB.start("JMdict_e", "jdbc:mysql://localhost:3307/JMDict", "root", "");
 
         //String[] N5Verbs = {"浴びる", "上げる", "開ける", "開く", "洗う", "歩く", "遊ぶ", "会う", "違う", 
         //"出す", "出かける", "出る", "吹く", "降る", "入る", "始ま", "履く", "話す", "晴れる", "貼る", "走る", 
@@ -13,11 +13,6 @@ public class main {
         //"立つ", "飛ぶ", "止まる", "とまる", "取る", "撮る", "疲れる", "使う", "付ける", "着く", "作る", "勤める", 
         //"生まれる", "売る", "歌う", "分かる", "忘れる", "渡る", "渡す", "やる", "休む", "呼ぶ", "読む","ある", "する"};
         
-        Connection connection = MySQLConnection.getConnection();
-
-        JMDictParser.ParseFile(connection, "test.XML");
-
-
-        
+    
     }
 }

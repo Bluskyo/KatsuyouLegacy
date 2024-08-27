@@ -537,5 +537,23 @@ various information fields.
 <gloss>to speak</gloss>
 </sense>
 </entry>
+<entry>
+<ent_seq>1738820</ent_seq>
+<k_ele>
+<keb>論壇</keb>
+<ke_pri>news2</ke_pri>
+<ke_pri>nf37</ke_pri>
+</k_ele>
+<r_ele>
+<reb>ろんだん</reb>
+<re_pri>news2</re_pri>
+<re_pri>nf37</re_pri>
+</r_ele>
+<sense>
+<pos>&n;</pos>
+<gloss>rostrum</gloss>
+<gloss>the world of criticism</gloss>
+</sense>
+</entry>
 
 </JMdict>
