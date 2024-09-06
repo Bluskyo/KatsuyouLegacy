@@ -16,11 +16,13 @@ public class conjugations {
             return conjugations;
         }
         else if (pos == "Godan verb"){
-            
+
 
             //String[] conjugations = {dictFormKanji, informalNegative, formalPositive, formalNegative};
+
+            String[] lol = {""};
             
-            return null;
+            return lol;
         }
 
         
