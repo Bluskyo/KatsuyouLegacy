@@ -15,11 +15,11 @@ public class main {
         String kanji = "聞く";
 
 
-        int kanjiStem = kanji.charAt(kanji.length() - 1 ) - 4;
+        int kanjiStem = kanji.charAt(kanji.length() - 1 ) - 14;
+
+        System.out.println(kanjiStem);
         
-        for(int i = kanjiStem; i < kanjiStem + 10; i += 2) {
-            System.out.println("hexChar: " + (char)i);
-        }
+       
 
 
         //System.out.println(kanjiStem - 4);
