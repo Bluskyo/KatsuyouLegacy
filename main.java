@@ -6,7 +6,11 @@ public class main {
 
         String[][] n5Verbs = JLPT_Lists.n5List();
 
-        conjugations.present(n5Verbs[0][0], n5Verbs[0][2]);
+        String[] presentConj = conjugations.present(n5Verbs[0][0], n5Verbs[0][2]);
+
+        for (String con : presentConj){
+            System.out.println(con);
+        }
 
 
     }
