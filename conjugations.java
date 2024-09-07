@@ -23,9 +23,9 @@ public class conjugations {
             int nextHiraganaFormal = kanji.charAt(kanji.length() - 1 ) - 2; // finds next hiragana of conjugation.
             char formalStem = (char)nextHiraganaFormal;
 
+            // u, tsu, ru verbs have different unicode than ku, gu, su verbs.
             char hiragana = kanji.charAt(kanji.length() - 1);
 
-            // u, tsu, ru verbs have different unicode than ku, gu, su verbs.
             switch (hiragana) {
                 case 'う':
                     stem  = 'わ';
@@ -66,6 +66,11 @@ public class conjugations {
 
         return null;
     }
+
+    public static String[] past(String kanji, String pos)[
+        
+    ]
+
     
 
 }
