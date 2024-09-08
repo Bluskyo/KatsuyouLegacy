@@ -3,7 +3,7 @@ public class conjugations {
 
         String wordStem = plainForm.substring(0, plainForm.length() - 1); //Creates string without last hiragana in word.
 
-        if ("Ichidan verb".equals(pos)){ // Ru-Verbs
+        if ("Ichidan verb".equals(pos) || ("Suru verb".equals(pos) || "Kuru verb".equals(pos))){ // Ru-Verbs
             String informalNegative = wordStem + "ない";
             String formalPositive = wordStem + "ます";
             String formalNegative = wordStem + "ません";
@@ -47,16 +47,6 @@ public class conjugations {
 
             String[] conjugations = {plainForm, informalNegative, formalPositive, formalNegative};
             
-            return conjugations;
-        }
-
-        else if ("Suru verb".equals(pos) || "Kuru verb".equals(pos)){
-            String informalNegative = wordStem + "ない";
-            String formalPositive = wordStem + "ます";
-            String formalNegative = wordStem + "ません";
-
-            String[] conjugations = {plainForm, informalNegative, formalPositive, formalNegative};
-
             return conjugations;
         }
 
@@ -248,6 +238,49 @@ public class conjugations {
         return null;
     }
     
-    
+    public static String[] volitional(String plainForm, String pos){
+        String wordStem = plainForm.substring(0, plainForm.length() - 1); //Creates string without last hiragana in word.
+
+        if ("Ichidan verb".equals(pos) || "Suru verb".equals(pos) || "Kuru verb".equals(pos)){
+            String positiveForm = wordStem + "よう";
+            String negativeForm = wordStem + "ましょう";
+
+            String[] conjugations = {positiveForm, negativeForm};
+
+            return conjugations;
+        }
+        else if ("Godan verb".equals(pos)){
+            int nextHiragana = plainForm.charAt(plainForm.length() - 1 ) + 4; // finds next hiragana of conjugation.
+            char stem = (char)nextHiragana;
+
+            int nextHiraganaFormal = plainForm.charAt(plainForm.length() - 1 ) - 2; // finds next hiragana of conjugation.
+            char formalStem = (char)nextHiraganaFormal;
+            
+            char hiragana = plainForm.charAt(plainForm.length() - 1);
+
+            switch (hiragana) {
+                case 'ぬ', 'む', 'る'-> {
+                    stem -= 2;
+                    formalStem += 1;
+                }
+                case 'ぶ' -> {
+                    stem = 'ぼ';
+                    formalStem = 'び';
+                }
+            }
+
+            String positiveForm = wordStem + stem + "う";
+            String negativeForm = wordStem + formalStem + "ましょう";
+
+            String[] conjugations = {positiveForm, negativeForm};
+
+            return conjugations;
+        }
+
+        return null;
+    }
+    public static String[] passive(String plainForm, String pos){
+        return null;
+    }
 
 }

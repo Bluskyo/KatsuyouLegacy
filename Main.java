@@ -21,11 +21,15 @@ public class Main {
         //    System.out.println(con);
         //}
 
+        //String[] conj = conjugations.potential("泳ぐ", "Godan verb");
+        //for (String con : conj){
+        //    System.out.println(con);
+        //}
 
-        String[] godanVerbs = { "割る", "書く", "泳ぐ", "死ぬ", "学ぶ", "休む"};
+        String[] godanVerbs = {"会う", "立つ","写す","割る","書く","泳ぐ","死ぬ","学ぶ","休む"};
 
         for (String word: godanVerbs) {
-            String[] conj = conjugations.potential(word, "Godan verb");
+            String[] conj = conjugations.volitional(word, "Godan verb");
 
             for (String con : conj){
                 System.out.println(con);
