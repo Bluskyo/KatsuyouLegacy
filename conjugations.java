@@ -145,7 +145,7 @@ public class conjugations {
         return null;
     }
 
-    public static String[] teFrom(String plainForm, String pos){
+    public static String[] teForm(String plainForm, String pos){
 
         String wordStem = plainForm.substring(0, plainForm.length() - 1); //Creates string without last hiragana in word.
 
@@ -185,7 +185,6 @@ public class conjugations {
                 }
             }
 
-
             String positiveForm = wordStem + ending;
             String negativeForm = wordStem + "なくて";
 
@@ -197,6 +196,50 @@ public class conjugations {
         return null;
     }
 
+    public static String[] potential(String plainForm, String pos){
+
+        String wordStem = plainForm.substring(0, plainForm.length() - 1); //Creates string without last hiragana in word.
+
+        if ("Ichidan verb".equals(pos) || "Kuru verb".equals(pos)){
+            String positiveForm = wordStem + "られる";
+            String negativeForm = wordStem + "られない";
+            String[] conjugations = {positiveForm, negativeForm};
+
+            return conjugations;
+        }
+        else if ("Godan verb".equals(pos)){
+            int nextHiragana = plainForm.charAt(plainForm.length() - 1 ) + 2; // finds next hiragana of conjugation.
+            char stem = (char)nextHiragana;
+            
+            char hiragana = plainForm.charAt(plainForm.length() - 1);
+
+            switch (hiragana) {
+                case 'ぬ','む', 'る' -> {
+                    stem -= 1;
+                }
+                case 'ぶ' -> {
+                    stem = 'べ';
+                }
+            }
+
+            String positiveForm = wordStem + stem + "る";
+            String negativeForm = wordStem + stem + "ない";
+
+            String[] conjugations = {positiveForm, negativeForm};
+
+            return conjugations;
+        }
+        else if ("Suru verb".equals(pos)){
+            String positiveForm = "できる";
+            String negativeForm = "できない";
+
+            String[] conjugations = {positiveForm, negativeForm};
+
+            return conjugations;
+        }
+
+        return null;
+    }
     
 
     

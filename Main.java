@@ -11,14 +11,27 @@ public class Main {
         //    System.out.println(con);
         //}
 
-        //String[] pastConj = conjugations.past("行く","Godan verb");
-        //for (String con : pastConj){
+        //String[] conj = conjugations.past("行く","Godan verb");
+        //for (String con : conj){
         //    System.out.println(con);
         //}
 
-        String[] pastConj = conjugations.teFrom("行く","Godan verb");
-        for (String con : pastConj){
-            System.out.println(con);
+        //String[] conj = conjugations.teForm("頑張る","Godan verb");
+        //for (String con : conj){
+        //    System.out.println(con);
+        //}
+
+
+        String[] godanVerbs = { "割る", "書く", "泳ぐ", "死ぬ", "学ぶ", "休む"};
+
+        for (String word: godanVerbs) {
+            String[] conj = conjugations.potential(word, "Godan verb");
+
+            for (String con : conj){
+                System.out.println(con);
+            }
+            System.out.println("");
+
         }
 
 
