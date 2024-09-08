@@ -237,8 +237,10 @@ public class conjugations {
         else if ("Suru verb".equals(pos)){
             String positiveForm = "できる";
             String negativeForm = "できない";
+            String formalPositive = "できます";
+            String formalNegative = "できません";
 
-            String[] conjugations = {positiveForm, negativeForm};
+            String[] conjugations = {positiveForm, negativeForm, formalPositive, formalNegative};
 
             return conjugations;
         }
