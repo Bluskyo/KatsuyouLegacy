@@ -196,14 +196,17 @@ public class conjugations {
         return null;
     }
 
-    public static String[] potential(String plainForm, String pos){
+    public static String[] potential(String plainForm, String pos){ 
 
         String wordStem = plainForm.substring(0, plainForm.length() - 1); //Creates string without last hiragana in word.
 
         if ("Ichidan verb".equals(pos) || "Kuru verb".equals(pos)){
             String positiveForm = wordStem + "られる";
             String negativeForm = wordStem + "られない";
-            String[] conjugations = {positiveForm, negativeForm};
+            String formalPositive = wordStem + "られます";
+            String formalNegative = wordStem + "られません";
+
+            String[] conjugations = {positiveForm, negativeForm, formalPositive, formalNegative};
 
             return conjugations;
         }
@@ -224,8 +227,10 @@ public class conjugations {
 
             String positiveForm = wordStem + stem + "る";
             String negativeForm = wordStem + stem + "ない";
+            String formalPositive = wordStem + stem + "ます";
+            String formalNegative = wordStem + stem + "ません";
 
-            String[] conjugations = {positiveForm, negativeForm};
+            String[] conjugations = {positiveForm, negativeForm, formalPositive, formalNegative};
 
             return conjugations;
         }
@@ -241,7 +246,6 @@ public class conjugations {
         return null;
     }
     
-
     
 
 }
