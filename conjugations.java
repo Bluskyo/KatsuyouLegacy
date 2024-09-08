@@ -103,24 +103,57 @@ public class conjugations {
                 }
                 case 'く', 'ぐ' -> {
                     // informal conjugations
-                    informalPositive = wordStem + "いた";
                     if (hiragana == 'ぐ'){
                         informalPositive = wordStem + "いだ";
+
                     }
-                    informalNegative = wordStem + "かなかった";
+                    else {
+                        informalPositive = wordStem + "いた";
+                    }
+                    informalNegative = wordStem + hiragana + "なかった";
                     // formal conjugations
-                    formalPositive = wordStem + "きました";
-                    formalNegative = wordStem + "きませんでした";
+                    formalPositive = wordStem + hiragana + "ました";
+                    formalNegative = wordStem + hiragana + "ませんでした";
                 }
-                case 'む', 'ぶ', 'ぬ' -> {
+                case 'む', 'ぶ', 'ぬ', 'る'-> { // bu is wrong.
+
+                    int nextHiragana = kanji.charAt(kanji.length() - 1 ) - 2; // finds next hiragana of conjugation.
+                    char stem = (char)nextHiragana;
+        
+                    int nextHiraganaFormal = kanji.charAt(kanji.length() - 1 ) - 1; // finds next hiragana of conjugation.
+                    char formalStem = (char)nextHiraganaFormal;
+
                     // informal conjugations
-                    informalPositive = wordStem + "んだ";
-                    informalNegative = wordStem + "さなかった";
+                    if (hiragana == 'る'){
+                        informalPositive = wordStem + "った";
+                    }
+                    else {
+                        informalPositive = wordStem + "んだ";
+                    }
+                    informalNegative = wordStem + stem + "なかった";
+
                     // formal conjugations
-                    formalPositive = wordStem + "しました";
-                    formalNegative = wordStem + "しませんでした";
+                    formalPositive = wordStem + formalStem +"ました";
+                    formalNegative = wordStem + formalStem +"ませんでした";
                 }
-                case 'る', 'う', 'つ' -> System.out.println("");
+                case 'う', 'つ' -> {
+
+                    int nextHiragana = kanji.charAt(kanji.length() - 1 ) - 2; // finds next hiragana of conjugation.
+                    char stem = (char)nextHiragana;
+        
+                    int nextHiraganaFormal = kanji.charAt(kanji.length() - 1 ) - 2; // finds next hiragana of conjugation.
+                    char formalStem = (char)nextHiraganaFormal;
+
+                    
+
+                    // informal conjugations
+                    informalPositive = wordStem + "った";
+                    informalNegative = wordStem + stem + "なかった";
+                    // formal conjugations
+                    formalPositive = wordStem + formalStem +"ました";
+                    formalNegative = wordStem + formalStem +"ませんでした";
+
+                }
                 default -> {
                 }
             }
