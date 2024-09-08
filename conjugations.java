@@ -3,7 +3,7 @@ public class conjugations {
 
         String wordStem = kanji.substring(0, kanji.length() - 1); //Creates string without last hiragana in word.
 
-        if (pos == "Ichidan verb"){
+        if (pos == "Ichidan verb"){ // Ru-Verbs
             // informal conjugations
             String informalNegative = wordStem + "ない";
 
@@ -15,7 +15,7 @@ public class conjugations {
             
             return conjugations;
         }
-        else if (pos == "Godan verb"){ 
+        else if (pos == "Godan verb"){ // U-Verbs
 
             int nextHiragana = kanji.charAt(kanji.length() - 1 ) - 4; // finds next hiragana of conjugation.
             char stem = (char)nextHiragana;
@@ -23,23 +23,25 @@ public class conjugations {
             int nextHiraganaFormal = kanji.charAt(kanji.length() - 1 ) - 2; // finds next hiragana of conjugation.
             char formalStem = (char)nextHiraganaFormal;
 
-            // u, tsu, ru verbs have different unicode than ku, gu, su verbs.
+            // u, tsu, ru, mu verbs have different unicode than ku, gu, su verbs.
             char hiragana = kanji.charAt(kanji.length() - 1);
 
             switch (hiragana) {
-                case 'う':
-                    stem  = 'わ';
-                    break;
-                case 'つ':
+                case 'う' -> stem  = 'わ';
+                case 'つ' -> {
                     stem = 'た';
                     formalStem  = 'ち';
-                    break;
-                case 'る':
+                }
+                case 'る' -> {
                     stem = 'ら';
                     formalStem  = 'り';
-                    break;
-                default:
-                    break;
+                }
+                case 'む' -> {
+                    stem = 'ま';
+                    formalStem  = 'み';
+                }
+                default -> {
+                }
             }
 
             String informalNegative = wordStem + stem + "ない";
@@ -60,16 +62,80 @@ public class conjugations {
 
             return conjugations;
         }
-        else if (pos == "Kuru verb"){
-            System.out.println("");
-        }
 
         return null;
     }
 
-    public static String[] past(String kanji, String pos)[
-        
-    ]
+    public static String[] past(String kanji, String pos){
+
+        String wordStem = kanji.substring(0, kanji.length() - 1); //Creates string without last hiragana in word.
+
+        if (pos == "Ichidan verb"){
+            // informal conjugations
+            String informalPositive = wordStem + "た";
+            String informalNegative = wordStem + "なかった";
+
+            // formal conjugations
+            String formalPositive = wordStem + "ました";
+            String formalNegative = wordStem + "ませんでした";
+
+            String[] conjugations = {informalPositive, informalNegative, formalPositive, formalNegative};
+            
+            return conjugations;
+        }
+        else if (pos == "Godan verb"){
+
+            char hiragana = kanji.charAt(kanji.length() - 1);
+
+            String informalPositive = "";
+            String informalNegative = "";
+            String formalPositive = "";
+            String formalNegative = "";
+
+            switch (hiragana) {
+                case 'す' -> {
+                    // informal conjugations
+                    informalPositive = wordStem + "した";
+                    informalNegative = wordStem + "さなかった";
+                    // formal conjugations
+                    formalPositive = wordStem + "しました";
+                    formalNegative = wordStem + "しませんでした";
+                }
+                case 'く', 'ぐ' -> {
+                    // informal conjugations
+                    informalPositive = wordStem + "いた";
+                    if (hiragana == 'ぐ'){
+                        informalPositive = wordStem + "いだ";
+                    }
+                    informalNegative = wordStem + "かなかった";
+                    // formal conjugations
+                    formalPositive = wordStem + "きました";
+                    formalNegative = wordStem + "きませんでした";
+                }
+                case 'む', 'ぶ', 'ぬ' -> {
+                    // informal conjugations
+                    informalPositive = wordStem + "んだ";
+                    informalNegative = wordStem + "さなかった";
+                    // formal conjugations
+                    formalPositive = wordStem + "しました";
+                    formalNegative = wordStem + "しませんでした";
+                }
+                case 'る', 'う', 'つ' -> System.out.println("");
+                default -> {
+                }
+            }
+
+
+            String[] conjugations = {informalPositive, informalNegative, formalPositive, formalNegative};
+            
+            return conjugations;
+        }
+
+
+        return null;
+    }
+
+    
 
     
 
