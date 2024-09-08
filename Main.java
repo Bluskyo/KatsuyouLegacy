@@ -11,10 +11,16 @@ public class Main {
         //    System.out.println(con);
         //}
 
-        String[] pastConj = verbConjugations.past("行く","Godan verb");
+        //String[] pastConj = conjugations.past("行く","Godan verb");
+        //for (String con : pastConj){
+        //    System.out.println(con);
+        //}
+
+        String[] pastConj = conjugations.teFrom("行く","Godan verb");
         for (String con : pastConj){
             System.out.println(con);
         }
+
 
     }
 }

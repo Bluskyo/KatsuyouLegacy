@@ -4,10 +4,7 @@ public class conjugations {
         String wordStem = plainForm.substring(0, plainForm.length() - 1); //Creates string without last hiragana in word.
 
         if ("Ichidan verb".equals(pos)){ // Ru-Verbs
-            // informal conjugations
             String informalNegative = wordStem + "ない";
-
-            // formal conjugations
             String formalPositive = wordStem + "ます";
             String formalNegative = wordStem + "ません";
 
@@ -69,12 +66,9 @@ public class conjugations {
 
         String wordStem = plainForm.substring(0, plainForm.length() - 1); //Creates string without last hiragana in word.
 
-        if ("Ichidan verb".equals(pos)){
-            // informal conjugations
+        if ("Ichidan verb".equals(pos) || ("Suru verb".equals(pos) || "Kuru verb".equals(pos))){
             String informalPlain = wordStem + "た";
             String informalNegative = wordStem + "なかった";
-
-            // formal conjugations
             String formalPositive = wordStem + "ました";
             String formalNegative = wordStem + "ませんでした";
 
@@ -95,18 +89,30 @@ public class conjugations {
             String ending = "";
 
             switch (hiragana) {
+                case 'う' -> {
+                    ending = "った";
+                    stem = 'わ';
+                    formalStem = 'い';
+                }
+                case 'く' ->{
+                    if ("行".equals(wordStem)){ // 行った is an exception in this conjugation.
+                        ending = "った";
+                    }else{
+                        ending = "いて";
+                    }
+                }
+                case 'ぐ' -> {
+                    ending = "いだ";
+                }
                 case 'す' -> {
                     ending = "した";
                 }
-                case 'く', 'ぐ' -> {
-                    if (hiragana == 'ぐ'){
-                        ending = "いだ";
-                    }
-                    else {
-                        ending = "いた";
-                    }
+                case 'つ' -> {
+                    ending = "った";
+                    stem = 'た';
+                    formalStem = 'ち';
                 }
-                case 'む', 'ぬ'-> { 
+                case 'ぬ', 'む'-> { 
                     ending = "んだ";
                     stem += 2;
                     formalStem += 1;
@@ -121,23 +127,9 @@ public class conjugations {
                     stem = 'ら';
                     formalStem = 'り';
                 }
-                case 'う' -> {
-                    ending = "った";
-                    stem = 'わ';
-                    formalStem = 'い';
-                }
-                case 'つ' -> {
-                    ending = "った";
-                    stem = 'た';
-                    formalStem = 'ち';
-                }
                 default -> {
                 }
                 
-            }
-
-            if ("行く".equals(plainForm)){
-                ending = "った";
             }
 
             String informalPlain = wordStem + ending;
@@ -149,14 +141,55 @@ public class conjugations {
             
             return conjugations;
         }
-        else if ("Suru verb".equals(pos) || "Kuru verb".equals(pos)){
 
-            String informalPlain = wordStem + 'た';
-            String informalNegative = wordStem + "なかった";
-            String formalPositive = wordStem + "ました";
-            String formalNegative = wordStem + "ませんでした";
+        return null;
+    }
 
-            String[] conjugations = {informalPlain, informalNegative, formalPositive, formalNegative};
+    public static String[] teFrom(String plainForm, String pos){
+
+        String wordStem = plainForm.substring(0, plainForm.length() - 1); //Creates string without last hiragana in word.
+
+        if ("Ichidan verb".equals(pos) || "Suru verb".equals(pos) || "Kuru verb".equals(pos) ){
+
+            String positiveForm = wordStem + "て";
+            String negativeForm = wordStem + "なくて";
+            String[] conjugations = {positiveForm, negativeForm};
+
+            return conjugations;
+
+        }
+        else if ("Godan verb".equals(pos)){
+
+            char hiragana = plainForm.charAt(plainForm.length() - 1);
+            String ending = "";
+
+            switch (hiragana) {
+                case 'す'->{
+                    ending = "して";
+                }
+                case 'く'->{
+                    if ("行".equals(wordStem)){ // 行って is an exception in this conjugation.
+                        ending = "って";
+                    }else{
+                        ending = "いて";
+                    }
+                }
+                case 'ぐ'->{
+                    ending = "いで";
+                }
+                case 'ぬ', 'ぶ', 'む'->{
+                    ending = "んで";
+                }
+                case 'う', 'つ', 'る' ->{
+                    ending = "って";
+                }
+            }
+
+
+            String positiveForm = wordStem + ending;
+            String negativeForm = wordStem + "なくて";
+
+            String[] conjugations = {positiveForm, negativeForm};
 
             return conjugations;
         }
