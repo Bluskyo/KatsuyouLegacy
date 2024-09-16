@@ -68,6 +68,17 @@ public class Main {
             System.out.println("");
         }
 
+        // CAUSATIVE PASSIVE 
+        System.out.println("CAUSATIVE PASSIVE :");
+        for (String word : godanVerbs) {
+            String[] conj = conjugations.causativePassive(word, "Godan verb");
+            for (String con : conj){
+                System.out.println(con);
+            }
+            System.out.println("");
+        }
+        
+
     }
         
 }
