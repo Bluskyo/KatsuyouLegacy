@@ -17,7 +17,7 @@ public class Main {
         // PRESENT
         //System.out.println("PRESENT:");
         //for (String word : godanVerbs) {
-        //    String[] conju = conjugations.present(word, "Godan verb");
+        //    String[] conju = Conjugations.present(word, "Godan verb");
         //    System.out.println(word);
         //    for (String con : conju){
         //        System.out.println(con);
@@ -28,7 +28,7 @@ public class Main {
         // PAST
         //System.out.println("PAST:");
         //for (String word : godanVerbs) {
-        //    String[] conju = conjugations.past(word, "Godan verb");
+        //    String[] conju = Conjugations.past(word, "Godan verb");
         //    System.out.println(word);
         //    for (String con : conju){
         //        System.out.println(con);
@@ -39,7 +39,7 @@ public class Main {
         // TE FORM
         //System.out.println("TE FORM:");
         //for (String word : godanVerbs) {
-        //    String[] conju = conjugations.teForm(word, "Godan verb");
+        //    String[] conju = Conjugations.teForm(word, "Godan verb");
         //    System.out.println(word);
         //    for (String con : conju){
         //        System.out.println(con);
@@ -50,7 +50,7 @@ public class Main {
         // POTENTIAL 
         //System.out.println("POTENTIAL:");
         //for (String word : godanVerbs) {
-        //    String[] conju = conjugations.potential(word, "Godan verb");
+        //    String[] conju = Conjugations.potential(word, "Godan verb");
         //    System.out.println(word);
         //    for (String con : conju){
         //        System.out.println(con);
@@ -60,7 +60,7 @@ public class Main {
 
         // VOLITIONAL
         //for (String word: godanVerbs) {
-        //    String[] conj = conjugations.volitional(word, "Godan verb");
+        //    String[] conj = Conjugations.volitional(word, "Godan verb");
         //    System.out.println(word);
         //    for (String con : conj){
         //        System.out.println(con);
@@ -71,7 +71,7 @@ public class Main {
         // PASSIVE 
         //System.out.println("PASSIVE:");
         //for (String word : godanVerbs) {
-        //    String[] conj = conjugations.passive(word, "Godan verb");
+        //    String[] conj = Conjugations.passive(word, "Godan verb");
         //  System.out.println(word);
         //    for (String con : conj){
         //        System.out.println(con);
@@ -82,7 +82,7 @@ public class Main {
         // CAUSATIVE
         //System.out.println("CAUSATIVE:");
         //for (String word : godanVerbs) {
-        //    String[] conj = conjugations.causative(word, "Godan verb");
+        //    String[] conj = Conjugations.causative(word, "Godan verb");
         //    System.out.println(word);
         //    for (String con : conj){
         //        System.out.println(con);
@@ -93,7 +93,7 @@ public class Main {
         // CAUSATIVE PASSIVE 
         //System.out.println("CAUSATIVE PASSIVE :");
         //for (String word : godanVerbs) {
-        //    String[] conj = conjugations.causativePassive(word, "Godan verb");
+        //    String[] conj = Conjugations.causativePassive(word, "Godan verb");
         //    System.out.println(word);
         //    for (String con : conj){
         //        System.out.println(con);
@@ -104,7 +104,7 @@ public class Main {
         // IMPERATIVE
         //System.out.println("IMPERATIVE:");
         //for (String word : kuruVerb) {
-        //    String[] conj = conjugations.imperative(word, "Godan verb");
+        //    String[] conj = Conjugations.imperative(word, "Godan verb");
         //    System.out.println(word);
         //    for (String con : conj){
         //        System.out.println(con);
@@ -115,7 +115,7 @@ public class Main {
         // CONDITIONAL
         System.out.println("CONDITIONAL:");
         for (String word : godanVerbs) {
-            String[] conj = conjugations.conditional(word, "Godan verb");
+            String[] conj = Conjugations.conditional(word, "Godan verb");
             System.out.println(word);
             for (String con : conj){
                 System.out.println(con);

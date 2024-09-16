@@ -1,4 +1,4 @@
-public class conjugations {
+public class Conjugations {
 
     public static String[] present(String plainForm, String pos){
 
