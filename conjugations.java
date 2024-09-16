@@ -208,7 +208,7 @@ public class conjugations {
             
             char hiragana = plainForm.charAt(plainForm.length() - 1);
 
-            switch (hiragana) {
+            switch (hiragana) { // finds e equivalent hiragana.
                 case 'ぬ','む', 'る' -> {
                     stem -= 1;
                 }
@@ -452,7 +452,97 @@ public class conjugations {
     }
 
     public static String[] imperative(String plainForm, String pos){
-        String wordStem = plainForm.substring(0, plainForm.length() - 1);
+        String wordStem = plainForm.substring(0, plainForm.length() - 1); //Creates string without last hiragana in word.
+
+        if ("Ichidan verb".equals(pos) || "Suru verb".equals(pos)){
+            String positiveForm = wordStem + "ろ";
+            String negativeForm = wordStem + "な";
+            String formalPositive = wordStem + "て" + "ください"; // te form 
+            String formalNegative = wordStem + "ないで" + "ください";
+
+            String[] conjugations = {positiveForm, negativeForm, formalPositive, formalNegative};
+
+            return conjugations;
+        }
+        else if ("Godan verb".equals(pos)){
+            int nextHiragana = plainForm.charAt(plainForm.length() - 1 ) + 2; // finds next hiragana of conjugation.
+            char ending = (char)nextHiragana;
+
+            int formalNextHiragana = plainForm.charAt(plainForm.length() - 1 ) - 4; // finds next hiragana of conjugation.
+            char formalStem = (char)formalNextHiragana;
+            
+            char hiragana = plainForm.charAt(plainForm.length() - 1);
+
+            switch (hiragana) { // finds e equivalent hiragana.
+                case 'ぬ','む', 'る' -> {
+                    ending -= 1;
+                }
+                case 'ぶ' -> {
+                    ending = 'べ';
+                }
+            }
+
+            // te form for positive formal.
+            String teFrom = "";
+
+            switch (hiragana) { 
+                case 'す'->{
+                    teFrom = "して";
+                }
+                case 'く'->{
+                    if ("行".equals(wordStem)){ // 行って is an exception in this conjugation.
+                        teFrom = "って";
+                    }else{
+                        teFrom = "いて";
+                    }
+                }
+                case 'ぐ'->{
+                    teFrom = "いで";
+                }
+                case 'ぬ', 'ぶ', 'む'->{
+                    teFrom = "んで";
+                }
+                case 'う', 'つ', 'る' ->{
+                    teFrom = "って";
+                }
+            }
+
+            // te form for negative
+            switch (hiragana) {
+                case 'ぬ','む', 'る' -> {
+                    formalStem += 2;
+                }
+                case 'ぶ' -> {
+                    formalStem = 'ば';
+                }
+                case 'う' -> {
+                    formalStem = 'わ';
+                }
+                case 'つ' -> {
+                    formalStem = 'た';
+                }
+            }
+
+            String positiveForm = wordStem + ending;
+            String negativeForm = wordStem + ending + "な";
+            String formalPositive = wordStem + teFrom + "ください";
+            String formalNegative = wordStem + formalStem + "ないください";
+
+            String[] conjugations = {positiveForm, negativeForm, formalPositive, formalNegative};
+
+            return conjugations;
+        }
+        else if ("Kuru verb".equals(pos)){
+            String positiveForm = "来い";
+            String negativeForm = "来るな";
+            String formalPositive = "来てください";
+            String formalNegative = "来ないでください";
+
+            String[] conjugations = {positiveForm, negativeForm, formalPositive, formalNegative};
+
+            return conjugations;
+        }
+
         return null;
     }
 

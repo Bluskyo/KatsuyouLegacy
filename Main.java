@@ -7,7 +7,10 @@ public class Main {
         //String[][] n5Verbs = JLPT_Lists.n5List();
 
 
-        String[] godanVerbs = {"会う", "立つ","写す","割る","書く","泳ぐ","死ぬ","学ぶ","休む"};
+        String[] godanVerbs = {"会う", "立つ","写す","割る","書く","泳ぐ","死ぬ","学ぶ","休む", "話す"};
+        String[] ichiVerb = {"食べる"};
+        String[] suruVerb = {"為る"};
+        String[] kuruVerb = {"来る"};
         //String[] presentConj = verbConjugations.present(n5Verbs[testKanji][0], n5Verbs[testKanji][2]);
 
 
@@ -33,6 +36,7 @@ public class Main {
         //System.out.println("POTENTIAL:");
         //for (String word : godanVerbs) {
         //String[] conju = conjugations.potential(word, "Godan verb");
+        //System.out.println(word);
         //for (String con : conju){
         //    System.out.println(con);
         //}
@@ -42,6 +46,7 @@ public class Main {
         // VOLITIONAL
         //for (String word: godanVerbs) {
         //    String[] conj = conjugations.volitional(word, "Godan verb");
+        //    System.out.println(word);
         //    for (String con : conj){
         //        System.out.println(con);
         //    }
@@ -52,6 +57,7 @@ public class Main {
         //System.out.println("PASSIVE:");
         //for (String word : godanVerbs) {
         //    String[] conj = conjugations.passive(word, "Godan verb");
+        //  System.out.println(word);
         //    for (String con : conj){
         //        System.out.println(con);
         //    }
@@ -59,25 +65,37 @@ public class Main {
         //}
 
         // CAUSATIVE
-        System.out.println("CAUSATIVE:");
-        for (String word : godanVerbs) {
-            String[] conj = conjugations.causative(word, "Godan verb");
-            for (String con : conj){
-                System.out.println(con);
-            }
-            System.out.println("");
-        }
+        //System.out.println("CAUSATIVE:");
+        //for (String word : godanVerbs) {
+        //    String[] conj = conjugations.causative(word, "Godan verb");
+        //    System.out.println(word);
+        //    for (String con : conj){
+        //        System.out.println(con);
+        //    }
+        //    System.out.println("");
+        //}
 
         // CAUSATIVE PASSIVE 
-        System.out.println("CAUSATIVE PASSIVE :");
-        for (String word : godanVerbs) {
-            String[] conj = conjugations.causativePassive(word, "Godan verb");
+        //System.out.println("CAUSATIVE PASSIVE :");
+        //for (String word : godanVerbs) {
+        //    String[] conj = conjugations.causativePassive(word, "Godan verb");
+        //    System.out.println(word);
+        //    for (String con : conj){
+        //        System.out.println(con);
+        //    }
+        //    System.out.println("");
+        //}
+
+        // IMPERATIVE
+        System.out.println("IMPERATIVE:");
+        for (String word : kuruVerb) {
+            String[] conj = conjugations.imperative(word, "Kuru verb");
+            System.out.println(word);
             for (String con : conj){
                 System.out.println(con);
             }
             System.out.println("");
         }
-        
 
     }
         
