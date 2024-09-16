@@ -1,4 +1,5 @@
 public class conjugations {
+
     public static String[] present(String plainForm, String pos){
 
         String wordStem = plainForm.substring(0, plainForm.length() - 1); //Creates string without last hiragana in word.
@@ -283,7 +284,61 @@ public class conjugations {
 
         return null;
     }
+
     public static String[] passive(String plainForm, String pos){
+               String wordStem = plainForm.substring(0, plainForm.length() - 1); //Creates string without last hiragana in word.
+
+        if ("Ichidan verb".equals(pos) || "Kuru verb".equals(pos)){
+            String positiveForm = wordStem + "られる";
+            String negativeForm = wordStem + "られない";
+            String formalPositive = wordStem + "られます";
+            String formalNegative = wordStem + "られません";
+
+            String[] conjugations = {positiveForm, negativeForm, formalPositive, formalNegative};
+
+            return conjugations;
+        }
+        else if ("Godan verb".equals(pos)){
+            int nextHiragana = plainForm.charAt(plainForm.length() - 1 ) - 4; // finds next hiragana of conjugation.
+            char stem = (char)nextHiragana;
+            
+            char hiragana = plainForm.charAt(plainForm.length() - 1);
+
+            switch (hiragana) {
+                case 'ぬ','む', 'る' -> {
+                    stem += 2;
+                }
+                case 'ぶ' -> {
+                    stem = 'ば';
+                }
+                case 'う' -> {
+                    stem = 'わ';
+                }
+                case 'つ' -> {
+                    stem = 'た';
+                }
+            }
+
+            String positiveForm = wordStem + stem + "れる";
+            String negativeForm = wordStem + stem + "れない";
+            String formalPositive = wordStem + stem + "れます";
+            String formalNegative = wordStem + stem + "れません";
+
+            String[] conjugations = {positiveForm, negativeForm, formalPositive, formalNegative};
+
+            return conjugations;
+        }
+        else if ("Suru verb".equals(pos)){
+            String positiveForm = "させる";
+            String negativeForm = "されない";
+            String formalPositive = "されます";
+            String formalNegative = "されません";
+
+            String[] conjugations = {positiveForm, negativeForm, formalPositive, formalNegative};
+
+            return conjugations;
+        }
+
         return null;
     }
 
