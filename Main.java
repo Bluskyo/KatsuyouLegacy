@@ -7,7 +7,7 @@ public class Main {
         //String[][] n5Verbs = JLPT_Lists.n5List();
 
 
-        String[] godanVerbs = {"会う", "立つ","写す","割る","書く","泳ぐ","死ぬ","学ぶ","休む", "話す"};
+        String[] godanVerbs = {"会う", "立つ","写す","割る","書く","泳ぐ","死ぬ","学ぶ","休む"};
         String[] ichiVerb = {"食べる"};
         String[] suruVerb = {"為る"};
         String[] kuruVerb = {"来る"};
@@ -15,32 +15,47 @@ public class Main {
 
 
         // PRESENT
-        //String[] presentConj = verbConjugations.present("聞く","Godan verb"); 
-        //for (String con : presentConj){
-        //    System.out.println(con);
+        //System.out.println("PRESENT:");
+        //for (String word : godanVerbs) {
+        //    String[] conju = conjugations.present(word, "Godan verb");
+        //    System.out.println(word);
+        //    for (String con : conju){
+        //        System.out.println(con);
+        //    }
+        //    System.out.println("");
         //}
 
         // PAST
-        //String[] conj = conjugations.past("行く","Godan verb");
-        //for (String con : conj){
-        //    System.out.println(con);
+        //System.out.println("PAST:");
+        //for (String word : godanVerbs) {
+        //    String[] conju = conjugations.past(word, "Godan verb");
+        //    System.out.println(word);
+        //    for (String con : conju){
+        //        System.out.println(con);
+        //    }
+        //    System.out.println("");
         //}
 
         // TE FORM
-        //String[] conj = conjugations.teForm("頑張る","Godan verb");
-        //for (String con : conj){
-        //    System.out.println(con);
+        //System.out.println("TE FORM:");
+        //for (String word : godanVerbs) {
+        //    String[] conju = conjugations.teForm(word, "Godan verb");
+        //    System.out.println(word);
+        //    for (String con : conju){
+        //        System.out.println(con);
+        //    }
+        //    System.out.println("");
         //}
 
         // POTENTIAL 
         //System.out.println("POTENTIAL:");
         //for (String word : godanVerbs) {
-        //String[] conju = conjugations.potential(word, "Godan verb");
-        //System.out.println(word);
-        //for (String con : conju){
-        //    System.out.println(con);
-        //}
-        //System.out.println("");
+        //    String[] conju = conjugations.potential(word, "Godan verb");
+        //    System.out.println(word);
+        //    for (String con : conju){
+        //        System.out.println(con);
+        //    }
+        //    System.out.println("");
         //}
 
         // VOLITIONAL
@@ -87,9 +102,20 @@ public class Main {
         //}
 
         // IMPERATIVE
-        System.out.println("IMPERATIVE:");
-        for (String word : kuruVerb) {
-            String[] conj = conjugations.imperative(word, "Kuru verb");
+        //System.out.println("IMPERATIVE:");
+        //for (String word : kuruVerb) {
+        //    String[] conj = conjugations.imperative(word, "Godan verb");
+        //    System.out.println(word);
+        //    for (String con : conj){
+        //        System.out.println(con);
+        //    }
+        //    System.out.println("");
+        //}
+
+        // CONDITIONAL
+        System.out.println("CONDITIONAL:");
+        for (String word : godanVerbs) {
+            String[] conj = conjugations.conditional(word, "Godan verb");
             System.out.println(word);
             for (String con : conj){
                 System.out.println(con);

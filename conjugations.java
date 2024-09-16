@@ -457,8 +457,8 @@ public class conjugations {
         if ("Ichidan verb".equals(pos) || "Suru verb".equals(pos)){
             String positiveForm = wordStem + "ろ";
             String negativeForm = wordStem + "な";
-            String formalPositive = wordStem + "て" + "ください"; // te form 
-            String formalNegative = wordStem + "ないで" + "ください";
+            String formalPositive = wordStem + "てください"; // te form 
+            String formalNegative = wordStem + "ないでください";
 
             String[] conjugations = {positiveForm, negativeForm, formalPositive, formalNegative};
 
@@ -546,6 +546,41 @@ public class conjugations {
         return null;
     }
 
+    public static String[] conditional(String plainForm, String pos){
+        String wordStem = plainForm.substring(0, plainForm.length() - 1); //Creates string without last hiragana in word.
 
+        if ("Ichidan verb".equals(pos) || "Suru verb".equals(pos) || "Kuru verb".equals(pos)){
+            String positiveForm = wordStem + "れば";
+            String negativeForm = wordStem + "なければ";
+    
+            String[] conjugations = {positiveForm, negativeForm};
+    
+            return conjugations;
+        }
+        else if ("Godan verb".equals(pos)){
+            int nextHiragana = plainForm.charAt(plainForm.length() - 1 ) + 2; // finds next hiragana of conjugation.
+            char nextStem = (char)nextHiragana;
+            
+            char hiragana = plainForm.charAt(plainForm.length() - 1);
+    
+            switch (hiragana) { // finds e equivalent hiragana.
+                case 'ぬ','む', 'る' -> {
+                    nextStem -= 1;
+                }
+                case 'ぶ' -> {
+                    nextStem = 'べ';
+                }
+            }
+    
+            String positiveForm = wordStem + nextStem + "ば";
+            String negativeForm = wordStem + nextStem + "なければ";
+    
+            String[] conjugations = {positiveForm, negativeForm};
+    
+            return conjugations;
+        }
 
+        return null;
+    }
+    
 }
