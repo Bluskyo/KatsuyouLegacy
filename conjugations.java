@@ -52,6 +52,7 @@ public class conjugations {
 
         return null;
     }
+
     public static String[] past(String plainForm, String pos){
 
         String wordStem = plainForm.substring(0, plainForm.length() - 1); //Creates string without last hiragana in word.
@@ -262,6 +263,9 @@ public class conjugations {
                 case 'ぬ', 'む', 'る'-> {
                     stem -= 2;
                     formalStem += 1;
+                }
+                case 'つ' -> {
+                    formalStem  = 'ち';
                 }
                 case 'ぶ' -> {
                     stem = 'ぼ';
