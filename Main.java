@@ -49,9 +49,19 @@ public class Main {
         //}
 
         // PASSIVE 
-        System.out.println("PASSIVE:");
+        //System.out.println("PASSIVE:");
+        //for (String word : godanVerbs) {
+        //    String[] conj = conjugations.passive(word, "Godan verb");
+        //    for (String con : conj){
+        //        System.out.println(con);
+        //    }
+        //    System.out.println("");
+        //}
+
+        // CAUSATIVE
+        System.out.println("CAUSATIVE:");
         for (String word : godanVerbs) {
-            String[] conj = conjugations.passive(word, "Suru verb");
+            String[] conj = conjugations.causative(word, "Godan verb");
             for (String con : conj){
                 System.out.println(con);
             }

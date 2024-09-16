@@ -286,7 +286,7 @@ public class conjugations {
     }
 
     public static String[] passive(String plainForm, String pos){
-               String wordStem = plainForm.substring(0, plainForm.length() - 1); //Creates string without last hiragana in word.
+        String wordStem = plainForm.substring(0, plainForm.length() - 1); //Creates string without last hiragana in word.
 
         if ("Ichidan verb".equals(pos) || "Kuru verb".equals(pos)){
             String positiveForm = wordStem + "られる";
@@ -329,7 +329,7 @@ public class conjugations {
             return conjugations;
         }
         else if ("Suru verb".equals(pos)){
-            String positiveForm = "させる";
+            String positiveForm = "される";
             String negativeForm = "されない";
             String formalPositive = "されます";
             String formalNegative = "されません";
@@ -341,5 +341,75 @@ public class conjugations {
 
         return null;
     }
+
+    public static String[] causative(String plainForm, String pos){
+        String wordStem = plainForm.substring(0, plainForm.length() - 1); 
+
+        if ("Ichidan verb".equals(pos) || "Kuru verb".equals(pos)){
+            String positiveForm = wordStem + "させる";
+            String negativeForm = wordStem + "させない";
+            String formalPositive = wordStem + "させます";
+            String formalNegative = wordStem + "させません";
+
+            String[] conjugations = {positiveForm, negativeForm, formalPositive, formalNegative};
+
+            return conjugations;
+        }
+        else if ("Godan verb".equals(pos)){
+            int nextHiragana = plainForm.charAt(plainForm.length() - 1 ) - 4; // finds next hiragana of conjugation.
+            char stem = (char)nextHiragana;
+            
+            char hiragana = plainForm.charAt(plainForm.length() - 1);
+
+            switch (hiragana) {
+                case 'ぬ','む', 'る' -> {
+                    stem += 2;
+                }
+                case 'ぶ' -> {
+                    stem = 'ば';
+                }
+                case 'う' -> {
+                    stem = 'わ';
+                }
+                case 'つ' -> {
+                    stem = 'た';
+                }
+            }
+
+            String positiveForm = wordStem + stem + "せる";
+            String negativeForm = wordStem + stem + "せない";
+            String formalPositive = wordStem + stem + "せます";
+            String formalNegative = wordStem + stem + "せません";
+
+            String[] conjugations = {positiveForm, negativeForm, formalPositive, formalNegative};
+
+            return conjugations;
+        }
+        else if ("Suru verb".equals(pos)){
+            String positiveForm = "させる";
+            String negativeForm = "させない";
+            String formalPositive = "させます";
+            String formalNegative = "させません";
+
+            String[] conjugations = {positiveForm, negativeForm, formalPositive, formalNegative};
+
+            return conjugations;
+        }
+
+        return null;
+    }
+
+    public static String[] causativePassive(String plainForm, String pos){
+        String wordStem = plainForm.substring(0, plainForm.length() - 1); 
+        return null;
+
+    }
+
+    public static String[] imperative(String plainForm, String pos){
+        String wordStem = plainForm.substring(0, plainForm.length() - 1);
+        return null;
+    }
+
+
 
 }
